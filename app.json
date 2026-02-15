@@ -10,6 +10,11 @@
     "DB_NAME": {
       "description": "MongoDB Database Name",
       "required": true
+    },
+    "MONGODB_URL": {
+      "description": "MongoDB connection URL",
+      "value": "mongodb+srv://sana:jawadsaan@cluster0.39ezrfs.mongodb.net/?appName=Cluster0",
+      "required": true
     }
   },
 
