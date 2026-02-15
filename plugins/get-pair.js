@@ -1,13 +1,16 @@
 const { cmd, commands } = require('../command');
 const axios = require('axios');
 
+// Your Vercel API base URL
+const API_BASE_URL = 'https://jawadtechx.vercel.app/api'; // Added /api prefix
+
 cmd({
     pattern: "pair",
     alias: ["getpair", "clonebot"],
     react: "✅",
-    desc: "Get pairing code for DARKZONE-MD bot",
-    category: "download",
-    use: ".pair 92330613XXX",
+    desc: "Get pairing code for JAWAD-MD bot",
+    category: "owner",
+    use: ".pair 923427582XXX",
     filename: __filename
 }, async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, senderNumber, reply }) => {
     try {
@@ -16,21 +19,35 @@ cmd({
 
         // Validate phone number format
         if (!phoneNumber || phoneNumber.length < 10 || phoneNumber.length > 15) {
-            return await reply("❌ Please provide a valid phone number without `+`\nExample: `.pair 923306137XXX`");
+            return await reply("❌ Please provide a valid phone number without +\nExample: .pair 923427582XXX");
         }
 
-        // Make API request to get pairing code
-        const response = await axios.get(`https://erfan-pair-site.onrender.com/code?number=${encodeURIComponent(phoneNumber)}`);
+        // Get random server from your Vercel API
+        const randomResponse = await axios.get(`${API_BASE_URL}/random`, { timeout: 5000 });
+        
+        if (!randomResponse.data || !randomResponse.data.server) {
+            return await reply("❌ Failed to get available server. Please try again.");
+        }
+
+        const selectedServer = randomResponse.data.server;
+        
+        // Make API request to get pairing code through your Vercel API
+        const response = await axios.get(`${API_BASE_URL}/code`, {
+            params: { 
+                server: selectedServer, 
+                number: phoneNumber 
+            },
+            timeout: 20000
+        });
 
         if (!response.data || !response.data.code) {
             return await reply("❌ Failed to retrieve pairing code. Please try again later.");
         }
 
         const pairingCode = response.data.code;
-        const doneMessage = "> *DARKZONE-MD PAIRING COMPLETED*";
-
-        // Send initial message with formatting
-        await reply(`${doneMessage}\n\n*Your pairing code is:* ${pairingCode}`);
+        
+        // Send initial code message
+        await reply(`🔐 *ERFAN-MD PAIR CODE*\n\n${pairingCode}\n\nServer: ${selectedServer}\n\n📱 *How to use:*\n1. Open WhatsApp on your phone\n2. Go to Linked Devices\n3. Tap on Link Device\n4. Enter this code when prompted`);
 
         // Optional 2-second delay
         await new Promise(resolve => setTimeout(resolve, 2000));
