@@ -2,7 +2,7 @@ const { cmd, commands } = require('../command');
 const axios = require('axios');
 
 // Your Vercel API base URL
-const API_BASE_URL = 'https://jawadtechx.vercel.app/api'; // Added /api prefix
+const API_BASE_URL = 'https://erfanmd-mini.vercel.app/api'; // Added /api prefix
 
 cmd({
     pattern: "pair",
@@ -19,7 +19,7 @@ cmd({
 
         // Validate phone number format
         if (!phoneNumber || phoneNumber.length < 10 || phoneNumber.length > 15) {
-            return await reply("❌ Please provide a valid phone number without +\nExample: .pair 923427582XXX");
+            return await reply("❌ Please provide a valid phone number without +\nExample: .pair 923306137XXX");
         }
 
         // Get random server from your Vercel API
