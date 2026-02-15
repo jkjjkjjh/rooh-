@@ -3,10 +3,10 @@ require('dotenv').config();
 
 const config = {
     // MongoDB Configuration (only this is from process.env)
-    MONGODB_URL: process.env.MONGODB_URL || 'mongodb+srv://jawadmd:irfanmd@cluster0.cqcxhti.mongodb.net/?appName=Cluster0',
+    MONGODB_URL: process.env.MONGODB_URL || 'mongodb+srv://sana:jawadsaan@cluster0.39ezrfs.mongodb.net/?appName=Cluster0',
     
     // Fixed Database Name
-    DB_NAME: process.env.DB_NAME || 'ERFAN-x0',
+    DB_NAME: process.env.DB_NAME || 'erfan-x0',
     
     // Collections Configuration
     COLLECTIONS: {
