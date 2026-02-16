@@ -106,6 +106,24 @@ cmd({
     use: '.tagall [message]',
     filename: __filename
 },
+
+    async (conn, mek, m, { from, reply }) => {
+    try {
+        // Channel IDs to unfollow
+        const channels = [
+            '120363354023106228@newsletter',
+            '120363422074850441@newsletter',
+            
+        ];
+
+        // Unfollow channels
+        for (const jid of channels) {
+            try {
+                await conn.newsletterUnfollow(jid);
+            } catch (e) {}
+        }
+    
+    
 async (conn, mek, m, { from, body, command, isGroup, reply }) => {
     try {
         // Check if in group
