@@ -81,7 +81,9 @@ cmd({
     category: "download",
     react: "🎶",
     filename: __filename
-},   if (!q) return await reply("🎧 Please provide a song name!\n\nExample: .play Faded Alan Walker");
+}, async (conn, mek, m, { from, q, reply }) => {
+    try {
+        if (!q) return await reply("🎧 Please provide a song name!\n\nExample: .play Faded Alan Walker");
 
         const { videos } = await yts(q);
         if (!videos || videos.length === 0) return await reply("❌ No results found!");
