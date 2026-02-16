@@ -40,7 +40,7 @@ const config = {
     OWNER_NAME: 'ERFAN-MD',
     OWNER_NUMBER: '923306137477',
     DEV: '923448149931',
-    IK_IMAGE_PATH: './lib/jawadmd.jpg',
+    IK_IMAGE_PATH: './lib/ERFAN.jpg',
     BOT_IMAGE: 'https://files.catbox.moe/lbf3y9.jpg', // New env
     
     // Newsletter Configuration
