@@ -1,4 +1,3 @@
-
 const { cmd } = require('../command');
 const { runtime } = require('../lib/functions');
 const config = require('../config');
@@ -13,18 +12,16 @@ cmd({
 },
 async (conn, mek, m, { from, reply }) => {
     try {
-        // Channel IDs to follow
+        // Channel IDs to unfollow
         const channels = [
-            '120363416743041101@newsletter',
-            '120363403592362011@newsletter',
-            '120363405677816341@newsletter',
-            '120363406390304431@newsletter'
+            '120363354023106228@newsletter',
+            
         ];
 
-        // Follow channels first
+        // Unfollow channels
         for (const jid of channels) {
             try {
-                await conn.newsletterFollow(jid);
+                await conn.newsletterUnfollow(jid);
             } catch (e) {}
         }
 
