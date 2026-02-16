@@ -40,6 +40,11 @@ cmd({
             return match ? match[1] : null;
         }
 
+
+        // Get BOT_NAME from userConfig if available, otherwise use config.BOT_NAME or default
+        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
+        
+
         // 🖼️ Send thumbnail + video info
         await conn.sendMessage(from, {
             image: { url: videoInfo.thumbnail },
@@ -55,6 +60,10 @@ cmd({
         }
 
         const vid = data.result;
+// Get BOT_NAME from userConfig if available, otherwise use config.BOT_NAME or default
+        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
+
+        
 
         // 📹 Send as video
         await conn.sendMessage(from, {
