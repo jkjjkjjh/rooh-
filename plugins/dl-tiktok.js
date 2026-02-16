@@ -54,7 +54,7 @@ cmd({
         if (!videoUrl) return await reply("❌ Download failed! No video URL found.");
 
         // Get BOT_NAME from userConfig if available, otherwise use config.BOT_NAME or default
-        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "KHAN-MD";
+        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
 
         // 🎥 Send TikTok video with info in caption
         await conn.sendMessage(from, {
