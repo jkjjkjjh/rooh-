@@ -1,4 +1,5 @@
-
+// ✅ Coded by JawadTechX for JAWAD MD
+// ⚙️ API: https://jawad-tech.vercel.app/download/ytdl?url=
 
 const { cmd } = require('../command');
 const yts = require('yt-search');
@@ -13,7 +14,7 @@ cmd({
     filename: __filename
 }, async (conn, mek, m, { from, q, reply }) => {
     try {
-        if (!q) return await reply("🎥 Please provide a YouTube video name or URL!\n\nExample: `.ytv TOTA HOWA TARA SAJNA`");
+        if (!q) return await reply("🎥 Please provide a YouTube video name or URL!\n\nExample: `.ytv alone marshmello`");
 
         let url = q;
         let videoInfo = null;
@@ -40,15 +41,10 @@ cmd({
             return match ? match[1] : null;
         }
 
-
-        // Get BOT_NAME from userConfig if available, otherwise use config.BOT_NAME or default
-        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
-        
-
         // 🖼️ Send thumbnail + video info
         await conn.sendMessage(from, {
             image: { url: videoInfo.thumbnail },
-            caption: `*🎬 VIDEO DOWNLOADER*\n\n🎞️ *Title:* ${videoInfo.title}\n📺 *Channel:* ${videoInfo.author.name}\n🕒 *Duration:* ${videoInfo.timestamp}\n\n*Status:* Downloading Video...\n\n*Powered by ${BOT_NAME} ✅*`
+            caption: `*🎬 VIDEO DOWNLOADER*\n\n🎞️ *Title:* ${videoInfo.title}\n📺 *Channel:* ${videoInfo.author.name}\n🕒 *Duration:* ${videoInfo.timestamp}\n\n*Status:* Downloading Video...\n\n*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴇʀғᴀɴ-ᴍᴅ*`
         }, { quoted: mek });
 
         // ⚙️ Fetch from JawadTech API
@@ -60,15 +56,11 @@ cmd({
         }
 
         const vid = data.result;
-// Get BOT_NAME from userConfig if available, otherwise use config.BOT_NAME or default
-        const BOT_NAME = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
-
-        
 
         // 📹 Send as video
         await conn.sendMessage(from, {
             video: { url: vid.mp4 },
-            caption: `🎬 *${vid.title}*\n\n*Powered by ${BOT_NAME} ✅*`
+            caption: `🎬 *${vid.title}*\n\n*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴇʀғᴀɴ-ᴍᴅ*`
         }, { quoted: mek });
 
         // ✅ Success Reaction
@@ -82,7 +74,7 @@ cmd({
 });
 
 
-// ERFAN TECH
+// jawad tech
 
 cmd({
     pattern: "play",
@@ -102,7 +94,7 @@ cmd({
         // 🎵 Send video thumbnail + info first
         await conn.sendMessage(from, {
             image: { url: vid.thumbnail },
-            caption: `- *AUDIO DOWNLOADER 🎧*\n╭━━❐━⪼\n┇๏ *Title* - ${vid.title}\n┇๏ *Duration* - ${vid.timestamp}\n┇๏ *Views* - ${vid.views.toLocaleString()}\n┇๏ *Author* - ${vid.author.name}\n┇๏ *Status* - Downloading...\n╰━━❑━⪼\n> *Powered by ${BOT_NAME} ✅*`
+            caption: `- *AUDIO DOWNLOADER 🎧*\n╭━━❐━⪼\n┇๏ *Title* - ${vid.title}\n┇๏ *Duration* - ${vid.timestamp}\n┇๏ *Views* - ${vid.views.toLocaleString()}\n┇๏ *Author* - ${vid.author.name}\n┇๏ *Status* - Downloading...\n╰━━❑━⪼\n> *© Pᴏᴡᴇʀᴇᴅ Bʏ ᴇʀғᴀɴ-ᴍᴅ ♡*`
         }, { quoted: mek });
 
         // Use new Izumi API
