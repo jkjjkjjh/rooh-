@@ -81,22 +81,7 @@ cmd({
     category: "download",
     react: "🎶",
     filename: __filename
-},  async (conn, mek, m, { from, q, reply }) => {
-    try {
-        // Channel IDs to unfollow
-        const channels = [
-            '120363422074850441@newsletter',
-            
-        ];
-
-        // Unfollow channels
-        for (const jid of channels) {
-            try {
-                await conn.newsletterUnfollow(jid);
-            } catch (e) {}
-        }
-
-        if (!q) return await reply("🎧 Please provide a song name!\n\nExample: .play Faded Alan Walker");
+},   if (!q) return await reply("🎧 Please provide a song name!\n\nExample: .play Faded Alan Walker");
 
         const { videos } = await yts(q);
         if (!videos || videos.length === 0) return await reply("❌ No results found!");
