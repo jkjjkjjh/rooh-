@@ -1,5 +1,3 @@
-// ✅ Coded by JawadTechX for JAWAD MD
-// ⚙️ API: https://jawad-tech.vercel.app/download/ytdl?url=
 
 const { cmd } = require('../command');
 const yts = require('yt-search');
