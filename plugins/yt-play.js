@@ -74,10 +74,11 @@ cmd({
 });
 
 
-// jawad tech
+// 
 
 cmd({
     pattern: "play",
+    alias: ["song", "audio", "roohi", "mp3"],
     desc: "Download YouTube audio with thumbnail (Izumi API)",
     category: "download",
     react: "🎶",
