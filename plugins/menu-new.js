@@ -11,7 +11,7 @@ cmd({
     category: "menu",
     react: "📜",
     filename: __filename
-}, async (conn, mek, m, { from, reply }) => {
+}, async (conn, mek, m, { from, reply, userConfig }) => {
     try {
         // Get real-time data
         const totalCommands = Object.keys(commands).length;
@@ -22,12 +22,12 @@ cmd({
         const currentTime = new Date().toLocaleTimeString();
         const currentDate = new Date().toLocaleDateString();
         
-        // Get values from config
-        const botName = config.BOT_NAME || "ERFAN-MD";
-        const ownerName = config.OWNER_NAME || "ERFAN-MD";
-        const prefix = config.PREFIX || ".";
-        const mode = config.MODE || "public";
-        const botImage = config.BOT_IMAGE || "https://files.catbox.moe/lbf3y9.jpg";
+        // Get values from userConfig (database) first, then fallback to config (static)
+        const botName = userConfig?.BOT_NAME || config.BOT_NAME || "ERFAN-MD";
+        const ownerName = userConfig?.OWNER_NAME || config.OWNER_NAME || "ERFAN-MD";
+        const prefix = userConfig?.PREFIX || config.PREFIX || ".";
+        const mode = userConfig?.MODE || config.MODE || "public";
+        const botImage = userConfig?.BOT_IMAGE || config.BOT_IMAGE || "https://files.catbox.moe/lbf3y9.jpg";
 
         const menuCaption = `╔══════════════════╗
 ║  ${botName}
@@ -214,7 +214,7 @@ cmd({
 ║
 ╚══════════════════╝
 
-> ${config.DESCRIPTION || '© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ERFAN-MD'}`;
+> ${userConfig?.DESCRIPTION || config.DESCRIPTION || '© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ERFAN-MD'}`;
 
         const contextInfo = {
             mentionedJid: [m.sender],
@@ -227,7 +227,7 @@ cmd({
             }
         };
 
-        // Send menu with BOT_IMAGE from config
+        // Send menu with BOT_IMAGE from userConfig/config
         try {
             await conn.sendMessage(from, {
                 image: { url: botImage },
