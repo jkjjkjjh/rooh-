@@ -1,4 +1,3 @@
-
 const { cmd } = require('../command');
 const config = require('../config');
 
@@ -79,7 +78,7 @@ async function checkAdminStatus(conn, chatId, senderId) {
     }
 }
 
-// Function to check if user is owner with LID support
+// Function to check if user is owner with LID support - ✅ FIXED
 function isOwnerUser(senderId) {
     const senderNumber = senderId.includes(':') 
         ? senderId.split(':')[0] 
@@ -88,26 +87,38 @@ function isOwnerUser(senderId) {
     const ownerNumbers = [];
     
     if (config.OWNER_NUMBER) {
-        const ownerNum = config.OWNER_NUMBER.includes('@') 
-            ? config.OWNER_NUMBER.split('@')[0] 
-            : config.OWNER_NUMBER;
+        const ownerNum = String(config.OWNER_NUMBER).includes('@') 
+            ? String(config.OWNER_NUMBER).split('@')[0] 
+            : String(config.OWNER_NUMBER);
         ownerNumbers.push(ownerNum.includes(':') ? ownerNum.split(':')[0] : ownerNum);
     }
     
     if (config.DEV) {
-        const devNum = config.DEV.includes('@') 
-            ? config.DEV.split('@')[0] 
-            : config.DEV;
+        const devNum = String(config.DEV).includes('@') 
+            ? String(config.DEV).split('@')[0] 
+            : String(config.DEV);
         ownerNumbers.push(devNum.includes(':') ? devNum.split(':')[0] : devNum);
     }
     
+    // ✅ FIXED: Handle SUDO as number, string, or array
     if (config.SUDO) {
-        const sudoList = config.SUDO.split(',').map(num => {
-            const cleaned = num.trim();
+        let sudoList;
+        
+        if (Array.isArray(config.SUDO)) {
+            // If SUDO is already an array
+            sudoList = config.SUDO;
+        } else {
+            // Convert to string first, then split
+            sudoList = String(config.SUDO).split(',');
+        }
+        
+        const processedSudo = sudoList.map(num => {
+            const cleaned = String(num).trim();
             const extracted = cleaned.includes('@') ? cleaned.split('@')[0] : cleaned;
             return extracted.includes(':') ? extracted.split(':')[0] : extracted;
         });
-        ownerNumbers.push(...sudoList);
+        
+        ownerNumbers.push(...processedSudo);
     }
     
     const validOwnerNumbers = ownerNumbers.filter(Boolean);
