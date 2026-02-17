@@ -1,92 +1,77 @@
-const { cmd } = require('../command');
 const axios = require('axios');
+const { cmd } = require('../command');
 
 cmd({
     pattern: "ai",
-    alias: ["bot", "dj", "gpt", "gpt4", "bing"],
-    desc: "Chat with an AI model",
-    category: "ai",
+    alias: ["gpt", "code"],
     react: "🤖",
-    filename: __filename
-},
-async (conn, mek, m, { from, args, q, reply, react }) => {
-    try {
-        if (!q) return reply("Please provide a message for the AI.\nExample: `.ai Hello`");
-
-        const apiUrl = `https://lance-frank-asta.onrender.com/api/gpt?q=${encodeURIComponent(q)}`;
-        const { data } = await axios.get(apiUrl);
-
-        if (!data || !data.message) {
-            await react("❌");
-            return reply("AI failed to respond. Please try again later.");
-        }
-
-        await reply(`🤖 *AI Response:*\n\n${data.message}`);
-        await react("✅");
-    } catch (e) {
-        console.error("Error in AI command:", e);
-        await react("❌");
-        reply("An error occurred while communicating with the AI.");
-    }
-});
-
-cmd({
-    pattern: "openai",
-    alias: ["chatgpt", "gpt3", "open-gpt"],
-    desc: "Chat with OpenAI",
+    desc: "Interact with Gemini AI",
     category: "ai",
-    react: "🧠",
+    use: ".gemini <prompt>",
     filename: __filename
-},
-async (conn, mek, m, { from, args, q, reply, react }) => {
+}, async (conn, mek, m, { from, q, quoted, reply }) => {
     try {
-        if (!q) return reply("Please provide a message for OpenAI.\nExample: `.openai Hello`");
-
-        const apiUrl = `https://vapis.my.id/api/openai?q=${encodeURIComponent(q)}`;
-        const { data } = await axios.get(apiUrl);
-
-        if (!data || !data.result) {
-            await react("❌");
-            return reply("OpenAI failed to respond. Please try again later.");
+        if (!q) {
+            return reply("Please provide a prompt to interact with Gemini AI.");
         }
 
-        await reply(`🧠 *OpenAI Response:*\n\n${data.result}`);
-        await react("✅");
-    } catch (e) {
-        console.error("Error in OpenAI command:", e);
-        await react("❌");
-        reply("An error occurred while communicating with OpenAI.");
-    }
-});
+        // Get Gemini API from external source
+        const apis = await axios.get('https://raw.githubusercontent.com/MOHAMMAD-NAYAN-07/Nayan/main/api.json');
+        const geminiApi = apis.data.gemini;
 
-cmd({
-    pattern: "deepseek",
-    alias: ["deep", "seekai"],
-    desc: "Chat with DeepSeek AI",
-    category: "ai",
-    react: "🧠",
-    filename: __filename
-},
-async (conn, mek, m, { from, args, q, reply, react }) => {
-    try {
-        if (!q) return reply("Please provide a message for DeepSeek AI.\nExample: `.deepseek Hello`");
+        let promptData = {
+            modelType: 'text_only',
+            prompt: q
+        };
 
-        const apiUrl = `https://api.ryzendesu.vip/api/ai/deepseek?text=${encodeURIComponent(q)}`;
-        const { data } = await axios.get(apiUrl);
-
-        if (!data || !data.answer) {
-            await react("❌");
-            return reply("DeepSeek AI failed to respond. Please try again later.");
+        // Check if there's an image in quoted message
+        if (quoted && quoted.imageMessage) {
+            // Download image and convert to base64
+            const imageBuffer = await quoted.download();
+            const base64Image = imageBuffer.toString('base64');
+            
+            promptData = {
+                modelType: 'text_and_image',
+                prompt: q,
+                imageParts: [`data:image/jpeg;base64,${base64Image}`]
+            };
         }
 
-        await reply(`🧠 *DeepSeek AI Response:*\n\n${data.answer}`);
-        await react("✅");
-    } catch (e) {
-        console.error("Error in DeepSeek AI command:", e);
-        await react("❌");
-        reply("An error occurred while communicating with DeepSeek AI.");
+        const { data } = await axios.post(geminiApi + '/gemini', promptData, {
+            timeout: 30000
+        });
+
+        const result = data?.result;
+
+        if (result) {
+            await conn.sendMessage(from, {
+                text: `🤖 *DARKZONE-MD AI*\n\n${result}\n\n*DARKZONE-MD*`,
+                contextInfo: {
+                    mentionedJid: [m.sender],
+                    forwardingScore: 999,
+                    isForwarded: true,
+                    forwardedNewsletterMessageInfo: {
+                        newsletterJid: '120363416743041101@newsletter',
+                        newsletterName: "DARKZONE-MD",
+                        serverMessageId: 143,
+                    },
+                },
+            }, { quoted: m });
+        } else {
+            reply("❌ No response received from Gemini AI. Please try again.");
+        }
+
+    } catch (error) {
+        console.error('Gemini AI Error:', error);
+        
+        if (error.code === 'ECONNREFUSED') {
+            reply("❌ Gemini service is currently unavailable.");
+        } else if (error.code === 'TIMEOUT') {
+            reply("❌ Request timeout. Please try again.");
+        } else if (error.response?.status === 404) {
+            reply("❌ Gemini API endpoint not found.");
+        } else {
+            reply("❌ An error occurred while interacting with Gemini AI.");
+        }
     }
 });
-
-
-      
