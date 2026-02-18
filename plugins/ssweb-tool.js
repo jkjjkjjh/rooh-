@@ -4,7 +4,7 @@ const axios = require('axios');
 
 cmd({
     pattern: "screenshot",
-    alias: ["ss", "ssweb", "webshot"],
+    alias: ["ss", "ssweb", "webshots"],
     desc: "Capture a screenshot of a website and send it on WhatsApp",
     category: "tools",
     react: "🖼️",
