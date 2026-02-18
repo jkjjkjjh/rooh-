@@ -2,13 +2,13 @@ const { cmd, commands } = require('../command');
 const axios = require('axios');
 
 // Your Vercel API base URL
-const API_BASE_URL = 'https://erfan.vercel.app/api'; // Added /api prefix
+const API_BASE_URL = 'https://erfan-md.vercel.app/api'; // Added /api prefix
 
 cmd({
     pattern: "pair",
     alias: ["getpair", "clonebot"],
     react: "✅",
-    desc: "Get pairing code for JAWAD-MD bot",
+    desc: "Get pairing code for erfan-MD bot",
     category: "owner",
     use: ".pair 923306137477",
     filename: __filename
