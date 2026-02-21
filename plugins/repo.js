@@ -11,7 +11,7 @@ cmd({
 async (conn, mek, m, { from, reply }) => {
     try {
         // 👇 Change your image URL here
-        const imageURL = 'https://i.ibb.co/q3VSTCbK/IMG-20260129-WA0909.jpg';
+        const imageURL = 'https://files.catbox.moe/tav49d.jpg';
         
         // 👇 Change your pairing link here
         const pairLink = 'https://erfan-md.vercel.app/';
