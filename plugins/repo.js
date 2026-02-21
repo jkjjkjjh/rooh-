@@ -1,8 +1,8 @@
 const { cmd } = require('../command');
 
 cmd({
-    pattern: "pair",
-    alias: ["link", "getbot", "paircode"],
+    pattern: "repo",
+    alias: ["link", "botlink", "minibot"],
     desc: "Get bot pairing link",
     react: "🔗",
     category: "main",
