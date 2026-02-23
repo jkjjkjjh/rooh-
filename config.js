@@ -18,14 +18,14 @@ const config = {
     // Bot Configuration
     AUTO_VIEW_STATUS: 'true',
     AUTO_LIKE_STATUS: 'false',
-    AUTO_RECORDING: 'false',
+    AUTO_RECORDING: 'true',
     AUTO_REACT: 'false',
-    AUTO_TYPING: 'false', // New env
-    ALWAYS_ONLINE: 'false', // New env
+    AUTO_TYPING: 'true', // New env
+    ALWAYS_ONLINE: 'true', // New env
     VERSION: '2.0.0 Bᴇᴛᴀ',
     DESCRIPTION: '*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ERFAN-MD*',
     ANTI_DELETE_PATH: 'inbox',
-    ANTI_DELETE: 'false',
+    ANTI_DELETE: 'true',
     STICKER_NAME: 'ERFAN',
     ANTI_LINK: 'true',
     WELCOME: 'false',
@@ -39,7 +39,7 @@ const config = {
     BOT_NAME: 'ERFAN-MD',
     OWNER_NAME: 'ERFAN-MD',
     OWNER_NUMBER: '923306137477',
-    DEV: '923448149931',
+    DEV: '923347572367',
     IK_IMAGE_PATH: './lib/ERFAN.jpg',
     BOT_IMAGE: 'https://files.catbox.moe/lbf3y9.jpg', // New env
     
@@ -78,10 +78,10 @@ const config = {
     DEFAULT_SETTINGS: {
         AUTO_VIEW_STATUS: 'true',
         AUTO_LIKE_STATUS: 'false',
-        AUTO_RECORDING: 'false',
+        AUTO_RECORDING: 'true',
         AUTO_REACT: 'false',
-        AUTO_TYPING: 'false', // New
-        ALWAYS_ONLINE: 'false', // New
+        AUTO_TYPING: 'true', // New
+        ALWAYS_ONLINE: 'true', // New
         VERSION: '2.0.0 Bᴇᴛᴀ',        
         OWNER_NAME: 'ERFAN-AHMAD',
         ANTI_DELETE_PATH: 'inbox',
@@ -90,7 +90,7 @@ const config = {
         OWNER_NUMBER: '923306137477',
         DEV: '923347572367',
         DESCRIPTION: '*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ERFAN-MD*',
-        ANTI_DELETE: 'false',
+        ANTI_DELETE: 'true',
         ANTI_LINK: 'true',
         STICKER_NAME: 'ERFAN-MD',
         WELCOME: 'false',
