@@ -864,8 +864,8 @@ async (conn, mek, m, { from, reply, isCreator, args, prefix, updateUserConfig, u
 // BAN COMMAND
 // ===============================
 cmd({
-    pattern: "ban",
-    alias: ["block"],
+    pattern: "ban1",
+    alias: ["block1"],
     desc: "Ban a user from using the bot",
     category: "owner",
     react: "🚫",
@@ -910,7 +910,7 @@ async (conn, mek, m, { from, reply, isCreator, args, prefix, updateUserConfig, u
 // UNBAN COMMAND
 // ===============================
 cmd({
-    pattern: "unban",
+    pattern: "unban1",
     alias: ["removeban"],
     desc: "Unban a user",
     category: "owner",
