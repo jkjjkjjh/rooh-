@@ -30,8 +30,8 @@ cmd({
 // flirt
 
 cmd({
-    pattern: "flirt",
-    alias: ["masom", "line"],
+    pattern: "flirt2",
+    alias: ["masom2", "line2"],
     desc: "Get a random flirt or pickup line.",
     react: "💘",
     category: "fun",
