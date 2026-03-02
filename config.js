@@ -16,6 +16,7 @@ const config = {
     },
     
     // Bot Configuration
+    AUTO_DOWNLOADER: 'true',
     AUTO_VIEW_STATUS: 'true',
     AUTO_LIKE_STATUS: 'false',
     AUTO_RECORDING: 'true',
