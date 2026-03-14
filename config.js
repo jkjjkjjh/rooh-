@@ -19,11 +19,11 @@ const config = {
     AUTO_DOWNLOADER: 'true',
     AUTO_VIEW_STATUS: 'true',
     AUTO_LIKE_STATUS: 'false',
-    AUTO_RECORDING: 'true',
+    AUTO_RECORDING: 'false',
     AUTO_REACT: 'false',
-    AUTO_TYPING: 'true', // New env
+    AUTO_TYPING: 'false', // New env
     ALWAYS_ONLINE: 'true', // New env
-    VERSION: '2.0.0 Bᴇᴛᴀ',
+    VERSION: '2.0.1 Bᴇᴛᴀ',
     DESCRIPTION: '*© ᴘᴏᴡᴇʀᴇᴅ ʙʏ ERFAN-MD*',
     ANTI_DELETE_PATH: 'inbox',
     ANTI_DELETE: 'true',
