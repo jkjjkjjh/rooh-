@@ -1,7 +1,12 @@
+const { cmd } = require('../command')
+const axios = require('axios')
+const yts = require('yt-search')
+const fs = require('fs')
+const path = require('path')
+const ffmpeg = require('fluent-ffmpeg')
+const ffmpegPath = require('@ffmpeg-installer/ffmpeg').path
 
-const { cmd } = require('../command');
-const yts = require('yt-search');
-const axios = require('axios');
+ffmpeg.setFfmpegPath(ffmpegPath)
 
 cmd({
     pattern: "ytv",
