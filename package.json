@@ -1,14 +1,14 @@
 {
-  "name": "𝐑𝐔𝐇𝐈𝐈𝐈😻🎀💗",
+  "name": "ERFAN-MD",
   "version": "1.4.0",
-  "description": "𝐑𝐔𝐇𝐈𝐈𝐈😻🎀💗 WhatsApp Bot",
+  "description": "ERFAN-MD WhatsApp Bot",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
   "dependencies": {
-    "@whiskeysockets/baileys": "7.0.0-rc.6",
+    "@whiskeysockets/baileys": "7.0.0-rc.9",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@vitalets/google-translate-api": "^9.2.1",
     "@hapi/boom": "^10.0.1",
